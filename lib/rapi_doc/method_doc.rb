@@ -49,12 +49,21 @@ module RapiDoc
           last_output_key = @outputs.keys.last
           @outputs[last_output_key] << ERB::Util.html_escape(line)
         end
-      when :htmloutput # append output html
+      when :html # append output html
         if line =~ /::output-end::/
           new_scope = :function
         else
           last_output_key = @outputs.keys.last
           @outputs[last_output_key] << line
+        end
+      when :markdown
+        if line =~ /::output-end::/
+          new_scope = :function
+          last_output_key = @outputs.keys.last
+          @outputs[last_output_key] << Markdown.new(@last_markdown_code).to_html
+        else
+          @last_markdown_code ||= ""
+          @last_markdown_code << line
         end
       when :class, :function
         result = line.scan(/(\w+)\:\:\s*(.*)/)
