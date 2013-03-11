@@ -24,7 +24,7 @@ Jeweler::Tasks.new do |gem|
   # dependencies defined in Gemfile
   gem.add_dependency 'haml'
   gem.add_dependency 'rdoc'
-  gem.add_dependency 'markdown'
+  gem.add_dependency 'markup'
 end
 Jeweler::RubygemsDotOrgTasks.new
 

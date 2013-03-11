@@ -1,6 +1,6 @@
 # encoding: utf-8
 require_relative 'method_doc'
-require "markdown"
+require "markup"
 
 module RapiDoc
   # custom exception class

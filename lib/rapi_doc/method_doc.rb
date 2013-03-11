@@ -1,3 +1,5 @@
+require "markup"
+
 module RapiDoc
   # This class holds methods about a doc.
   class MethodDoc
