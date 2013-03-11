@@ -1,5 +1,6 @@
 # encoding: utf-8
 require_relative 'method_doc'
+require "markdown"
 
 module RapiDoc
   # custom exception class
@@ -59,6 +60,7 @@ module RapiDoc
             if current_api_block.nil?
               raise ParsingException, "#{line_no} - No starttag for '=end' found"
             else
+              current_api_block.content = Markdown.new(current_api_block.content).to_html
               case current_scope
                 when :class
                   class_block = current_api_block

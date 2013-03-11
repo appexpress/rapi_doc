@@ -86,7 +86,7 @@ module RapiDoc
           end
         else
           # add line to block
-          @content << line
+          @content << line << "\n"
         end
       else
         raise ParsingException, "logic error: unknown current scope #{current_scope}"
