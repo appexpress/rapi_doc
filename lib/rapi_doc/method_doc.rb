@@ -63,7 +63,7 @@ module RapiDoc
           @outputs[last_output_key] << Markdown.new(@last_markdown_code).to_html
         else
           @last_markdown_code ||= ""
-          @last_markdown_code << line
+          @last_markdown_code << line << "\n"
         end
       when :class, :function
         result = line.scan(/(\w+)\:\:\s*(.*)/)
@@ -73,7 +73,7 @@ module RapiDoc
           case key
           when "response", "request", "request_header"            
             new_scope = key.to_sym
-          when "output"
+          when "output", 'markdown', 'html'
             new_scope = key.to_sym
             @outputs[value] = '' # add the new output format as a key
           when "param"
