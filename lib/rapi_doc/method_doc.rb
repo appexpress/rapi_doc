@@ -49,6 +49,13 @@ module RapiDoc
           last_output_key = @outputs.keys.last
           @outputs[last_output_key] << ERB::Util.html_escape(line)
         end
+      when :htmloutput # append output html
+        if line =~ /::output-end::/
+          new_scope = :function
+        else
+          last_output_key = @outputs.keys.last
+          @outputs[last_output_key] << line
+        end
       when :class, :function
         result = line.scan(/(\w+)\:\:\s*(.*)/)
         if not result.empty?
